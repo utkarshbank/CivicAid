@@ -151,7 +151,7 @@ function ChatContent() {
           </div>
           <div className="chat-header-info">
             <h2>CivicAid — {catMeta.label}</h2>
-            <p>AI assistant • Davis & Sacramento, CA</p>
+            <p>AI assistant • Davis, Sacramento & San Francisco, CA</p>
           </div>
         </div>
 

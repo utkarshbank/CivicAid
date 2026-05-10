@@ -20,7 +20,7 @@ export default function Home() {
         </h1>
         <p className="hero-subtitle">
           CivicAid connects you to food, housing, legal aid, mental health, and
-          more in Davis & Sacramento — powered by AI, available in your language,
+          more in Davis, Sacramento & San Francisco — powered by AI, available in your language,
           with voice support.
         </p>
         <div className="hero-cta">

@@ -24,14 +24,14 @@ def load_resources():
         return json.load(f)
 
 
-SYSTEM_PROMPT = """You are CivicAid, a friendly and helpful social services navigator for the Davis and Sacramento, California area. Your role is to help people find local resources for food, housing, legal aid, mental health, safety, transportation, immigration, disability services, and women's support.
+SYSTEM_PROMPT = """You are CivicAid, a friendly and helpful social services navigator for the Davis, Sacramento, and San Francisco, California area. Your role is to help people find local resources for food, housing, legal aid, mental health, safety, transportation, immigration, disability services, and women's support.
 
 IMPORTANT GUIDELINES:
 1. Be warm, empathetic, and non-judgmental. Many people seeking help feel vulnerable.
 2. Ask clear, simple questions — one at a time. Keep language at a 6th grade reading level.
 3. When the user first messages you, begin the intake process by asking these questions one at a time:
    - "Are you a student?" (helps identify UC Davis-specific resources)
-   - "What city are you in — Davis or Sacramento?" (helps filter by location)
+   - "What city are you in — Davis, Sacramento, or San Francisco?" (helps filter by location)
    - "Do you need help urgently, or can it wait a few days?" (helps prioritize crisis resources)
    - "Do you prefer help online, by phone, or in person?" (helps filter by service type)
    - "Is there a language you'd prefer to receive help in?" (helps identify multilingual services)
@@ -145,7 +145,7 @@ class GeminiService:
             }
         elif user_msg_count == 1:
             return {
-                "response": "Got it! 📍 **What city are you in — Davis or Sacramento?**",
+                "response": "Got it! 📍 **What city are you in — Davis, Sacramento, or San Francisco?**",
                 "resource_ids": [],
                 "resources": []
             }
@@ -190,6 +190,8 @@ class GeminiService:
                 data["city"] = "Sacramento"
             if "davis" in msg:
                 data["city"] = "Davis"
+            if "san francisco" in msg or "sf" in msg:
+                data["city"] = "San Francisco"
             if any(word in msg for word in ["urgent", "today", "now", "asap", "immediately"]):
                 data["urgent"] = True
             if "phone" in msg:

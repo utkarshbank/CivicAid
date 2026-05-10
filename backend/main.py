@@ -4,16 +4,19 @@ AI-powered social services navigator for Davis/Sacramento, CA
 """
 
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from backend directory FIRST
+load_dotenv(Path(__file__).parent / ".env")
+
+# Now import other modules
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
-
-# Import services
+# Import services after environment is loaded
 from services.gemini_service import GeminiService
 from services.resource_service import ResourceService
 from services.voice_service import VoiceService
@@ -21,7 +24,7 @@ from services.voice_service import VoiceService
 # Initialize app
 app = FastAPI(
     title="CivicAid API",
-    description="AI-powered social services navigator for Davis/Sacramento, CA",
+    description="AI-powered social services navigator for Davis, Sacramento & San Francisco, CA",
     version="1.0.0"
 )
 
